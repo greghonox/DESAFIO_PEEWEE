@@ -157,12 +157,6 @@ print("Pegar Receitas Medicas no período ")
 hoje = datetime.now().strftime("%Y-%m-%d")
 print(hoje)
 
-ddos = website_tb_Receitas_Medica.select().where(
-    fn.between(
-        website_tb_Receitas_Medica.data_inicio_tratamento,
-        website_tb_Receitas_Medica.data_fim_tratamento,
-    )
-)
+query = (website_tb_Receitas_Medica.select().where(('2021-08-10' >= website_tb_Receitas_Medica.data_inicio_tratamento) & ('2021-08-10' <= website_tb_Receitas_Medica.data_fim_tratamento)))
 
-for i in ddos:
-    print(i)
+for i in query: print(i.id, i.data_inicio_tratamento, i.data_fim_tratamento)
